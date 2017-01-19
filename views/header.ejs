@@ -11,7 +11,11 @@
 
 <header>
   <div class="container">
+    <% globals.objects.map(prop => { %>
+        <% if (prop.title === 'Main Logo') { %>
+            <h1 class="logo"><a href="/"><img src="<%= prop.metadata.main_logo_svg.imgix_url %>" alt="Tone Temple"/></a></h1>
+        <% }; %>
+    <% }); %>
     <% include nav %>
-    <h1><a href="/"><%= title %></a></h1>
   </div>
 </header>

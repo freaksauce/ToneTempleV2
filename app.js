@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
         .end(function(err, res) {
             console.log('fetch globals');
             app.locals.globals = JSON.parse(res.text);
-            // console.log(app.locals.globals.objects);
+            console.log(app.locals.globals.objects);
             app.locals.globals.objects.forEach(global => {
                 if (global.slug === 'meta-description') {
                     app.locals.metaDescription = stripTags(global.content);
@@ -46,7 +46,7 @@ app.get('/', function(req, res) {
         .end(function(err, res) {
             console.log('fetch brands');
             app.locals.brands = JSON.parse(res.text);
-            console.log(app.locals.brands.objects);
+            // console.log(app.locals.brands.objects);
         });
 });
 
