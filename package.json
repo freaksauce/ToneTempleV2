@@ -9,6 +9,7 @@
   "author": "Jon Bloomer",
   "license": "ISC",
   "dependencies": {
+    "cosmicjs": "^2.36.0",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "superagent": "^3.3.2"
