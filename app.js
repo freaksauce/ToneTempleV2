@@ -31,14 +31,13 @@ app.get('/', function(req, res) {
         .end(function(err, res) {
             console.log('fetch globals');
             app.locals.globals = JSON.parse(res.text);
-            console.log(app.locals.globals.objects);
+            // console.log(app.locals.globals.objects);
             app.locals.globals.objects.forEach(global => {
                 if (global.slug === 'meta-description') {
                     app.locals.metaDescription = stripTags(global.content);
                     // console.log(app.locals.metaDescription, 'metaDescription');
                 }
             });
-            // console.log('index page metaDescription : ', app.locals.metaDescription);
             myRes.render('index.ejs', { metaDescription: app.locals.metaDescription });
         });
     request
