@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="<%= metaDescription %>">
   <title><%= title %></title>
-  <link rel="stylesheet" href="/public/styles.css">
+  <link rel="icon" href="/public/images/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="/public/styles/main.css">
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="/public/scripts/app.js"></script>
 </head>
 <body>
 
@@ -15,7 +21,20 @@
         <% if (prop.title === 'Main Logo') { %>
             <h1 class="logo"><a href="/"><img src="<%= prop.metadata.main_logo_svg.imgix_url %>" alt="Tone Temple"/></a></h1>
         <% }; %>
+        <% if (prop.title === 'Facebook url') {
+          const strippedTagsContent = prop.content.replace(/(<([^>]+)>)/ig,""); %>
+          <div class="facebook-link">
+            <a href="<%= strippedTagsContent %>" target="_blank"><img className="image-responsive" src='/public/images/square-facebook-128.png' /></a>
+          </div>
+        <% } %>
     <% }); %>
-    <% include nav %>
+
+    <div id="hamburger" class="">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
+  <% include nav %>
 </header>
