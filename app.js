@@ -1,6 +1,13 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
+var request = require('superagent');
+
+var API_BASEURL = 'https://api.cosmicjs.com/v1/tonetemple/';
+var API_READ_KEY = 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd'; //read_key=
+var GLOBALS = API_BASEURL + 'object-type/globals?read_key=' + API_READ_KEY + '&hide_metafields=true';
+var BRANDS = API_BASEURL + 'object-type/brands?read_key=' + API_READ_KEY + '&hide_metafields=true';
+
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -16,6 +23,14 @@ app.all('*', function(req, res, next) {
 })
 
 app.get('/', function(req, res) {
+    console.log('index page');
+    console.log(GLOBALS);
+    request
+        .get(GLOBALS)
+        .end(function(err, res) {
+            console.log('end');
+            console.log(res.status);
+        })
     res.render('index.ejs');
 });
 
@@ -31,51 +46,6 @@ app.get('/api/posts', function(req, res) {
     res.json(res.locals.posts);
 });
 
-/**
-    CosmicJS start
-**/
-var config = {};
-config.bucket = {
-  slug: 'tonetemple',
-  read_key: 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd',
-  write_key: '' // add write_key if added to your Cosmic JS bucket settings
-};
-var Cosmic = require('cosmicjs');
-
-/* Get bucket
-================================ */
-Cosmic.getBucket(config, function(error, response){
-  // console.log(response);
-});
-
-/* Get objects
-================================ */
-Cosmic.getObjects(config, function(error, response){
-  // console.log(response);
-});
-
-/* Get objects by type
-================================ */
-var params = {
-  type_slug: 'posts',
-  limit: 5,
-  skip: 0
-};
-Cosmic.getObjectType(config, params, function(error, response){
-  // console.log(response);
-});
-
-/* Get object
-================================ */
-var params = {
-  slug: 'object-slug'
-}
-Cosmic.getObject(config, params, function(error, response){
-  // console.log(response);
-});
-/**
-    CosmicJS end
-**/
 
 app.listen(3000);
 console.log('app is listening at localhost:3000');
