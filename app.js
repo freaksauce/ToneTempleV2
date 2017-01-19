@@ -16,6 +16,12 @@ app.locals = {
 };
 
 app.all('*', function(req, res, next) {
+    request
+        .get(GLOBALS)
+        .end(function(err, res) {
+            console.log('end');
+            console.log(res);
+        })
     fs.readFile('posts.json', function(err, data) {
         res.locals.posts = JSON.parse(data);
         next();
@@ -24,13 +30,6 @@ app.all('*', function(req, res, next) {
 
 app.get('/', function(req, res) {
     console.log('index page');
-    console.log(GLOBALS);
-    request
-        .get(GLOBALS)
-        .end(function(err, res) {
-            console.log('end');
-            console.log(res.status);
-        })
     res.render('index.ejs');
 });
 
@@ -40,6 +39,19 @@ app.get('/post/:slug', function(req, res, next) {
             res.render('post.ejs', { post: post });
         }
     });
+});
+
+app.get('/brand/:slug', function(req, res, next) {
+    res.locals.posts.forEach(function(post) {
+        if (req.params.slug === post.slug) {
+            res.render('brand.ejs', { brand: brand });
+        }
+    });
+});
+
+app.get('/contact-us', function(req, res) {
+    console.log('contact us page');
+    res.render('contactus.ejs');
 });
 
 app.get('/api/posts', function(req, res) {
