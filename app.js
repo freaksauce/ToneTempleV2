@@ -38,8 +38,7 @@ app.get('/', function(req, res) {
                     // console.log(app.locals.metaDescription, 'metaDescription');
                 }
             });
-            // next();
-            console.log('index page metaDescription : ', app.locals.metaDescription);
+            // console.log('index page metaDescription : ', app.locals.metaDescription);
             myRes.render('index.ejs', { metaDescription: app.locals.metaDescription });
         });
     request
@@ -47,7 +46,7 @@ app.get('/', function(req, res) {
         .end(function(err, res) {
             console.log('fetch brands');
             app.locals.brands = JSON.parse(res.text);
-            // console.log(app.locals.brands.objects);
+            console.log(app.locals.brands.objects);
         });
 });
 

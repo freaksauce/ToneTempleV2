@@ -1,0 +1,7 @@
+<div className="nav">
+  <ul className="list-unstyled list-inline container">
+     <% brands.objects.forEach(function(navItem) { %>
+         <li><a href="/brand/<%= navItem.slug %>"><%= navItem.title %></a></li>
+     <% }); %>
+  </ul>
+</div>
