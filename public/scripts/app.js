@@ -22,4 +22,12 @@ jQuery(function() {
       $('.video-player').css('display', 'none');
   });
 
+  if ($('.HomePage')) {
+      $('.carouselItemsWrapper').slick({
+        autoplay:true,
+        wrapAround:true,
+        autoplayInterval:8000
+      });
+  }
+
 });
