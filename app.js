@@ -70,6 +70,10 @@ app.get('/', function(req, res) {
             if (global.slug === 'our-brands') {
                 app.locals.homepageOurBrands = global.content;
             }
+            // get main description for homepage
+            if (global.slug === 'main-description') {
+                app.locals.homepageWhatWeDo = global.content;
+            }
         });
 
 
