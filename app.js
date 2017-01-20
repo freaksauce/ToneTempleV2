@@ -54,7 +54,7 @@ app.get('/', function(req, res) {
     const myRes = res;
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
-        // console.log('GLOBALS', app.locals.globals);
+        console.log('GLOBALS', app.locals.globals);
         // console.log('BRANDS', app.locals.brands);
 
         // get meta info for page render
@@ -65,6 +65,10 @@ app.get('/', function(req, res) {
             // get homepage videos
             if (global.slug === 'homepage-videos') {
                 app.locals.homepageVideos = global.metadata.videos;
+            }
+            // get brands info for homepage
+            if (global.slug === 'our-brands') {
+                app.locals.homepageOurBrands = global.content;
             }
         });
 

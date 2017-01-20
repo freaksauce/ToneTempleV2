@@ -1,11 +1,19 @@
 <section class="videos">
+    <div class="video-player" style="display:none">
+      <div class="container">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive embed-responsive-16by9" src="" frameBorder="0" allowFullScreen></iframe>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
         <h1 class="text-center decorated">Videos</h1>
         <div class="videos-flex">
             <% homepageVideos.map(vid => { %>
                 <div class="videos-item">
                     <div class="videos-item--inner">
-                        <span class="img-o"></span>
+                        <span class="img-o" data-youTubeId="<%= vid.video_id %>"></span>
                         <img class="videos-item_img img-responsive" src='https://img.youtube.com/vi/<%= vid.video_id %>/0.jpg' />
                       </div>
                       <p class="videos-item--title"><%= vid.video_title %></p>
