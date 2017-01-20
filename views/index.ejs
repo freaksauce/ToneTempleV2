@@ -1,17 +1,10 @@
 <% include header %>
 <% include mobileMenu %>
 
-<main role="main">
-  <div class="container">
-    <% posts.forEach(function(post){ %>
-      <h3>
-        <a href="/post/<%= post.slug %>">
-          <%= post.title %>
-        </a>
-      </h3>
-      <div><%= post.content %></div>
-    <% }); %>
-  </main>
+<div class="HomePage">
+
+    <% include homepageVideos %>
+    
 </div>
 
 <% include footer %>

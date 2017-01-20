@@ -32,12 +32,6 @@ function fetchGlobals() {
                 console.log('fetch globals');
                 app.locals.globals = JSON.parse(res.text);
                 // console.log(app.locals.globals.objects);
-                app.locals.globals.objects.forEach(global => {
-                    if (global.slug === 'meta-description') {
-                        app.locals.metaDescription = stripTags(global.content);
-                        // console.log(app.locals.metaDescription, 'metaDescription');
-                    }
-                });
                 resolve(true);
         });
     });
@@ -49,7 +43,7 @@ function fetchBrands() {
             .get(BRANDS)
             .end(function(err, res) {
                 app.locals.brands = JSON.parse(res.text);
-                console.log('fetch brands', app.locals.brands);
+                console.log('fetch brands');
                 // console.log(app.locals.brands.objects);
                 resolve(true);
             });
@@ -62,8 +56,24 @@ app.get('/', function(req, res) {
     Promise.all(promises).then(function() {
         // console.log('GLOBALS', app.locals.globals);
         // console.log('BRANDS', app.locals.brands);
-        myRes.render('index.ejs', { metaDescription: app.locals.metaDescription });
-    });    
+
+        // get meta info for page render
+        app.locals.globals.objects.forEach(global => {
+            if (global.slug === 'meta-description') {
+                app.locals.metaDescription = stripTags(global.content);
+            }
+            // get homepage videos
+            if (global.slug === 'homepage-videos') {
+                app.locals.homepageVideos = global.metadata.videos;
+            }
+        });
+
+
+
+        myRes.render('index.ejs', {
+            metaDescription: app.locals.metaDescription
+        });
+    });
 });
 
 app.get('/brand/:slug', function(req, res, next) {

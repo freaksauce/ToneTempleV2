@@ -1,0 +1,16 @@
+<section class="videos">
+    <div class="container">
+        <h1 class="text-center decorated">Videos</h1>
+        <div class="videos-flex">
+            <% homepageVideos.map(vid => { %>
+                <div class="videos-item">
+                    <div class="videos-item--inner">
+                        <span class="img-o"></span>
+                        <img class="videos-item_img img-responsive" src='https://img.youtube.com/vi/<%= vid.video_id %>/0.jpg' />
+                      </div>
+                      <p class="videos-item--title"><%= vid.video_title %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
