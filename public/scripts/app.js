@@ -26,7 +26,9 @@ jQuery(function() {
       $('.carouselItemsWrapper').slick({
         autoplay:true,
         wrapAround:true,
-        autoplayInterval:8000
+        autoplayInterval:8000,
+        arrows: false,
+        dots: true
       });
   }
 
