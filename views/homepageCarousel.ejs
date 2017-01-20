@@ -1,0 +1,16 @@
+<div class="carousel">
+    <div class="container-fluid">
+      <div class="row">
+          <% carouselItems.map((img, index) => { %>
+              <div class="carousel__item">
+                <picture>
+                  <source srcSet='<%= img.large %>?w=2500' media="(min-width: 1800px)" />
+                  <source srcSet='<%= img.large %>?w=1400' media="(min-width: 1200px)" />
+                  <source srcSet='<%= img.medium %>?w=900' media="(min-width: 767px)" />
+                  <img class="img-responsive" srcSet='<%= img.medium %>?w=600' />
+                </picture>
+              </div>
+          <% }); %>
+      </div>
+    </div>
+  </div>

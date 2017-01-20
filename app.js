@@ -54,7 +54,7 @@ app.get('/', function(req, res) {
     const myRes = res;
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
-        console.log('GLOBALS', app.locals.globals);
+        // console.log('GLOBALS', app.locals.globals);
         // console.log('BRANDS', app.locals.brands);
 
         // get meta info for page render
@@ -76,11 +76,32 @@ app.get('/', function(req, res) {
             }
         });
 
+        app.locals.carouselItems = [];
 
+        app.locals.brands.objects.map(brand => {
+            let showOnHomepage = false;
+            let medium = brand.metadata.brand_header.imgix_url;
+            let large = brand.metadata.brand_header_large.imgix_url;
+            showOnHomepage = brand.metadata.feature_on_homepage;
 
-        myRes.render('index.ejs', {
-            metaDescription: app.locals.metaDescription
+            if (medium !== 'https://cosmicjs.imgix.net/'
+                && large !== 'https://cosmicjs.imgix.net/'
+                && showOnHomepage === "Yes") {
+
+              const newObj = {medium, large, showOnHomepage};
+              let duplicateFound = false;
+              app.locals.carouselItems.map(item => {
+                if (item.medium === medium) {
+                  duplicateFound = true;
+                }
+              });
+              if (!duplicateFound) {
+                app.locals.carouselItems.push(newObj);
+              }
+            }
         });
+
+        myRes.render('index.ejs');
     });
 });
 
