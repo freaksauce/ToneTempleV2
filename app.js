@@ -100,7 +100,10 @@ app.get('/', function(req, res) {
             }
         });
 
-        res.render('index.ejs', {navSelected: ''});
+        res.render('index.ejs', {
+            metaDescription: app.locals.metaDescription,
+            navSelected: ''
+        });
     });
 });
 
@@ -108,12 +111,6 @@ app.get('/brand/:slug', function(req, res) {
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
         // console.log(app.locals.globals.objects);
-        // get meta info for page render
-        app.locals.globals.objects.forEach(global => {
-            if (global.slug === 'meta-description') {
-                app.locals.metaDescription = stripTags(global.content);
-            }
-        });
 
         let selectedBrand = null;
         let headerImgObj = null;
@@ -132,11 +129,13 @@ app.get('/brand/:slug', function(req, res) {
                 }
             }
         });
-        console.log('set headerImgObj', headerImgObj);
+
         res.render('brand.ejs', {
             brand: selectedBrand,
             headerImgObj: headerImgObj,
-            navSelected: req.params.slug
+            navSelected: req.params.slug,
+            title: selectedBrand.metadata.meta_title,
+            metaDescription: selectedBrand.metadata.meta_description
         });
     });
 
@@ -144,7 +143,6 @@ app.get('/brand/:slug', function(req, res) {
 });
 
 app.get('/contact-us', function(req, res) {
-    console.log('contact us page');
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
         // console.log(app.locals.globals.objects);
