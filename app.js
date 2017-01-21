@@ -1,7 +1,11 @@
 const express = require('express');
 const fs = require('fs');
-const app = express();
+var compression = require('compression');
 const request = require('superagent');
+const app = express();
+
+app.use(compression());
+app.set('view cache', true);
 
 const API_BASEURL = 'https://api.cosmicjs.com/v1/tonetemple/';
 const API_READ_KEY = 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd'; //read_key=
