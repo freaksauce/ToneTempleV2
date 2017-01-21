@@ -1,7 +1,7 @@
 {
   "name": "tonetemplev2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Boutique Australian Guitar, Amplifier and Accessories Store",
   "main": "app.js",
   "scripts": {
     "start": "nodemon -e js,css,html,ejs app.js"
@@ -14,4 +14,8 @@
     "superagent": "^3.3.2",
     "nodemon": "^1.11.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/freaksauce/tone-temple-v2"
+  }
 }
