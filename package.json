@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon -e js,css,html,ejs app.js"
   },
   "author": "Jon Bloomer",
   "license": "ISC",
@@ -12,8 +12,6 @@
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "superagent": "^3.3.2"
+    "nodemon": "^1.11.0"
   },
-  "scripts": {
-      "start": "nodemon -e js,css,html,ejs app.js"
-  }
 }
