@@ -51,7 +51,6 @@ function fetchBrands() {
 }
 
 app.get('/', function(req, res) {
-    const myRes = res;
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
         // console.log('GLOBALS', app.locals.globals);
@@ -101,30 +100,65 @@ app.get('/', function(req, res) {
             }
         });
 
-        myRes.render('index.ejs');
+        res.render('index.ejs');
     });
 });
 
-app.get('/brand/:slug', function(req, res, next) {
-    res.locals.brands.objects.forEach(brand => {
-        if (req.params.slug === brand.slug) {
-            res.render('brand.ejs', { brand: brand });
-        }
-    })
+app.get('/brand/:slug', function(req, res) {
+    const promises = [fetchGlobals(), fetchBrands()];
+    Promise.all(promises).then(function() {
+        // console.log(app.locals.globals.objects);
+        // get meta info for page render
+        app.locals.globals.objects.forEach(global => {
+            if (global.slug === 'meta-description') {
+                app.locals.metaDescription = stripTags(global.content);
+            }
+        });
+
+        let selectedBrand = null;
+        let headerImgObj = null;
+
+        app.locals.brands.objects.forEach(brand => {
+            if (req.params.slug === brand.slug) {
+                selectedBrand = brand;
+
+                let imgMed = null;
+                let imgLrg = null;
+                const meta = selectedBrand.metadata;
+                imgMed = meta.brand_page_header_medium.imgix_url;
+                imgLrg = meta.brand_page_header_large.imgix_url;
+                if (imgLrg !== null && imgLrg !== 'https://cosmicjs.imgix.net/') {
+                  headerImgObj = {large: imgLrg, medium: imgMed};
+                }
+            }
+        });
+        console.log('set headerImgObj', headerImgObj);
+        res.render('brand.ejs', {brand: selectedBrand, headerImgObj: headerImgObj});
+    });
+
+
 });
 
 app.get('/contact-us', function(req, res) {
     console.log('contact us page');
-    res.render('contactus.ejs');
-});
+    const promises = [fetchGlobals(), fetchBrands()];
+    Promise.all(promises).then(function() {
+        // console.log(app.locals.globals.objects);
+        // get meta info for page render
+        app.locals.globals.objects.forEach(global => {
+            if (global.slug === 'meta-description') {
+                app.locals.metaDescription = stripTags(global.content);
+            }
+            // get homepage videos
+            if (global.slug === 'homepage-videos') {
+                app.locals.homepageVideos = global.metadata.videos;
+            }
+        });
 
-// app.get('/post/:slug', function(req, res, next) {
-//     res.locals.posts.forEach(function(post) {
-//         if (req.params.slug === post.slug) {
-//             res.render('post.ejs', { post: post });
-//         }
-//     });
-// });
+        res.render('contactus.ejs');
+    });
+
+});
 
 function stripTags(str) {
     return str.replace(/(<([^>]+)>)/ig,"");

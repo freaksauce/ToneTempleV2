@@ -1,10 +1,25 @@
 <% include header %>
+<% include mobileMenu %>
 
-<main role="main">
-  <div class="container">
-    <h3><%= brand.title %></h3>
-    <div><%= brand.content %></div>
-  </main>
-</div>
+<section class="Brand">
+    <div class="container-fluid">
+        <div class="row brandHeaderRow">
+            <picture class="brandHeader">
+                <source srcSet='<%= headerImgObj.large %>?w=2500' media="(min-width: 1800px)" />
+                <source srcSet='<%= headerImgObj.large %>?w=1400' media="(min-width: 1200px)" />
+                <source srcSet='<%= headerImgObj.medium %>?w=900' media="(min-width: 767px)" />
+                <img class="img-responsive" srcSet='<%= headerImgObj.medium %>?w=600' />
+            </picture>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="text-center"><%= brand.title %></h1>
+        <div class="brandContent col-md-8 col-md-offset-2">
+            <%- brand.content %>
+        </div>
+    </div>
+
+    <% include brandPageVideos %>
+</section>
 
 <% include footer %>

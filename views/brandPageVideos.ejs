@@ -12,13 +12,13 @@
     <div class="container">
         <h1 class="text-center decorated">Videos</h1>
         <div class="videos-flex">
-            <% homepageVideos.map(vid => { %>
+            <% brand.metadata.brand_videos.map(vid => { %>
                 <div class="videos-item">
                     <div class="videos-item--inner">
-                        <span class="img-o" data-youTubeId="<%= vid.video_id %>"></span>
-                        <img class="videos-item_img img-responsive" src='https://img.youtube.com/vi/<%= vid.video_id %>/0.jpg' />
+                        <span class="img-o" data-youTubeId="<%= vid.brand_video_id %>"></span>
+                        <img class="videos-item_img img-responsive" src='https://img.youtube.com/vi/<%= vid.brand_video_id %>/0.jpg' />
                       </div>
-                      <p class="videos-item--title"><%= vid.video_title %></p>
+                      <p class="videos-item--title"><%= vid.brand_video_title %></p>
                 </div>
             <% }); %>
         </div>

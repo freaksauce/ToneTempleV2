@@ -23,6 +23,9 @@
     .videos-item .videos-item--inner .img-o:before {
         background-image: url('/public/images/play-icon.png');
     }
+    .video-player-wrapper {
+        display: none;
+    }
   </style>
   <script type="text/javascript" src="/public/scripts/slick.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/public/styles/slick.css"/>
@@ -47,7 +50,7 @@
         <% if (prop.title === 'Facebook url') {
           const strippedTagsContent = prop.content.replace(/(<([^>]+)>)/ig,""); %>
           <div class="facebook-link">
-            <a href="<%= strippedTagsContent %>" target="_blank"><img className="image-responsive" src='/public/images/square-facebook-128.png' /></a>
+            <a href="<%= strippedTagsContent %>" target="_blank"><img class="image-responsive" src='/public/images/square-facebook-128.png' /></a>
           </div>
         <% } %>
     <% }); %>
