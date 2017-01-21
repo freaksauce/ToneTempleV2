@@ -100,7 +100,7 @@ app.get('/', function(req, res) {
             }
         });
 
-        res.render('index.ejs');
+        res.render('index.ejs', {navSelected: ''});
     });
 });
 
@@ -133,7 +133,11 @@ app.get('/brand/:slug', function(req, res) {
             }
         });
         console.log('set headerImgObj', headerImgObj);
-        res.render('brand.ejs', {brand: selectedBrand, headerImgObj: headerImgObj});
+        res.render('brand.ejs', {
+            brand: selectedBrand,
+            headerImgObj: headerImgObj,
+            navSelected: req.params.slug
+        });
     });
 
 
@@ -155,7 +159,7 @@ app.get('/contact-us', function(req, res) {
             }
         });
 
-        res.render('contactus.ejs');
+        res.render('contactus.ejs', {navSelected: 'contact-us'});
     });
 
 });
