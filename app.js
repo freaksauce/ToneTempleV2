@@ -170,5 +170,6 @@ function stripTags(str) {
     return str.replace(/(<([^>]+)>)/ig,"");
 }
 
-app.listen(process.env.PORT || 3000)
-console.log('app is listening at localhost:3000');
+app.listen(process.env.PORT || 3000);
+const mode = (process.env.NODE_ENV !== undefined) ? process.env.NODE_ENV : 'development';
+console.log('app is listening at localhost:3000 ' + mode + ' mode');
