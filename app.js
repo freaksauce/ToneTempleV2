@@ -138,7 +138,7 @@ app.get('/brand/:slug', function(req, res) {
             brand: selectedBrand,
             headerImgObj: headerImgObj,
             navSelected: req.params.slug,
-            title: selectedBrand.metadata.meta_title,
+            title: selectedBrand.metadata.meta_title + ' - Tone Temple',
             metaDescription: selectedBrand.metadata.meta_description
         });
     });
