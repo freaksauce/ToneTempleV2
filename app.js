@@ -1,7 +1,8 @@
 const express = require('express');
 const fs = require('fs');
-var compression = require('compression');
+const compression = require('compression');
 const request = require('superagent');
+const sm = require('sitemap')
 const app = express();
 
 app.use(compression());
@@ -169,6 +170,33 @@ app.get('/contact-us', function(req, res) {
 function stripTags(str) {
     return str.replace(/(<([^>]+)>)/ig,"");
 }
+
+/*
+ * sitemap
+ */
+sitemap = sm.createSitemap ({
+      hostname: 'http://www.tonetemple.com.au',
+      cacheTime: 600000,        // 600 sec - cache purge period
+      urls: [
+        { url: '/',  changefreq: 'monthly', priority: 1.0 },
+        { url: '/brand/strandberg-guitars',  changefreq: 'monthly',  priority: 0.9 },
+        { url: '/brand/friedman-amplification',  changefreq: 'monthly',  priority: 0.8 },
+        { url: '/brand/evil-angel-pickups',  changefreq: 'monthly',  priority: 0.7 },
+        { url: '/brand/yankee',  changefreq: 'monthly',  priority: 0.7 },
+        { url: '/brand/tronical',  changefreq: 'monthly',  priority: 0.7 },
+        { url: '/brand/ilitch-electronics',  changefreq: 'monthly',  priority: 0.7 },
+        { url: '/contact-us',  changefreq: 'monthly',  priority: 0.7 },
+      ]
+    });
+app.get('/sitemap.xml', function(req, res) { // send XML map
+    sitemap.toXML( function (err, xml) {
+      if (err) {
+        return res.status(500).end();
+      }
+      res.header('Content-Type', 'application/xml');
+      res.send( xml );
+  });
+})
 
 app.listen(process.env.PORT || 3000);
 const mode = (process.env.NODE_ENV !== undefined) ? process.env.NODE_ENV : 'development';
