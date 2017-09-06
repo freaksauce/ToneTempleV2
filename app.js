@@ -8,35 +8,47 @@ const app = express();
 app.use(compression());
 app.set('view cache', true);
 
-const API_BASEURL = 'https://api.cosmicjs.com/v1/tonetemple/';
-const API_READ_KEY = 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd'; //read_key=
-const GLOBALS = `${API_BASEURL}object-type/globals?read_key=${API_READ_KEY}&hide_metafields=true`;
-// https://api.cosmicjs.com/v1/tonetemple/object-type/globals?pretty=true&hide_metafields=true&read_key=A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd
-const BRANDS = `${API_BASEURL}object-type/brands?read_key=${API_READ_KEY}&hide_metafields=true`;
-// https://api.cosmicjs.com/v1/tonetemple/object-type/brands?pretty=true&hide_metafields=true&read_key=A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd
+// const API_BASEURL = 'https://api.cosmicjs.com/v1/tonetemple/';
+// const API_READ_KEY = 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd'; //read_key=
+// const GLOBALS = `${API_BASEURL}object-type/globals?read_key=${API_READ_KEY}&hide_metafields=true`;
+// const BRANDS = `${API_BASEURL}object-type/brands?read_key=${API_READ_KEY}&hide_metafields=true`;
+// const API_READ_KEY = 'A5Svxw4tq11rLGxnCGx7MLOUA7QIiznqjANMeqewHCsH7jX1vd'; //read_key=
+const API_CACHE = {
+  get apiEnd() { return `.json` },
+  get globals() { return `${app.locals.baseUrl}globals${this.apiEnd}` },
+  get brands() { return `${app.locals.baseUrl}brands${this.apiEnd}` }
+}
+
 
 app.use('/public', express.static(__dirname + '/public'));
+app.use('/api', express.static(__dirname + '/api'))
 
 app.locals = {
     title: 'Tone Temple - Exclusive Strandberg Australia Retailers',
     metaDescription: 'Tone Temple is the exclusive Strandberg Australia Retailer as well as retailer for brands such as Friedman Amplifiers, Yankee Power Supplies and Evil Angel Pickups'
 };
 
-app.all('*', function(req, res, next) {
-    fs.readFile('posts.json', function(err, data) {
-        res.locals.posts = JSON.parse(data);
-        next();
-    })
-});
+app.get('*', function(req, res, next) {
+  const currHost = req.get('host')
+  if (currHost === 'localhost:3000') {
+    app.locals.baseUrl = 'http://localhost:3000/api/';
+  } else {
+    app.locals.baseUrl = 'http://www.tonetemple.com.au/api/';
+  }
+  next();
+  // fetchContent('globals')
+  //   .then(data => {
+  //     next()
+  //   })
+})
 
 function fetchGlobals() {
     return new Promise((resolve, reject) => {
         request
-            .get(GLOBALS)
+            .get(API_CACHE['globals'])
             .end(function(err, res) {
-                console.log('fetch globals');
                 app.locals.globals = JSON.parse(res.text);
-                // console.log(app.locals.globals.objects);
+                // console.log('fetch globals', app.locals.globals);
                 resolve(true);
         });
     });
@@ -45,11 +57,10 @@ function fetchGlobals() {
 function fetchBrands() {
     return new Promise((resolve, reject) => {
         request
-            .get(BRANDS)
+            .get(API_CACHE['brands'])
             .end(function(err, res) {
                 app.locals.brands = JSON.parse(res.text);
-                console.log('fetch brands');
-                // console.log(app.locals.brands.objects);
+                // console.log('fetch brands', app.locals.brands);
                 resolve(true);
             });
     });
@@ -115,7 +126,6 @@ app.get('/', function(req, res) {
 app.get('/brand/:slug', function(req, res) {
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
-        // console.log(app.locals.globals.objects);
 
         let selectedBrand = null;
         let headerImgObj = null;
@@ -150,7 +160,6 @@ app.get('/brand/:slug', function(req, res) {
 app.get('/contact-us', function(req, res) {
     const promises = [fetchGlobals(), fetchBrands()];
     Promise.all(promises).then(function() {
-        // console.log(app.locals.globals.objects);
         // get meta info for page render
         app.locals.globals.objects.forEach(global => {
             if (global.slug === 'meta-description') {

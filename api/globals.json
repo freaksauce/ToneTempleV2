@@ -1,0 +1,134 @@
+{
+  "objects": [
+    {
+      "_id": "580f2437dae70f540e0025a2",
+      "slug": "meta-description",
+      "title": "Meta Description",
+      "content": "<p>Tone Temple is the exclusive Strandberg Australia Retailer as well as retailer for brands such as Friedman Amplifiers, Yankee Power Supplies and Evil Angel Pickups.</p>",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-10-25T09:21:59.278Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-10-25T09:21:59.278Z",
+      "status": "published",
+      "modified_at": "2017-01-19T10:18:27.039Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": null
+    },
+    {
+      "_id": "57fe14a33fa52ec954000753",
+      "slug": "homepage-videos",
+      "title": "Homepage Videos",
+      "content": "",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-10-12T10:46:59.077Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-10-12T10:46:59.077Z",
+      "status": "published",
+      "modified_at": "2016-10-15T09:17:33.592Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": {
+        "videos": [
+          {
+            "video_title": "TronicalTune Plus Review",
+            "video_id": "cfOreJ29r0U"
+          },
+          {
+            "video_title": "Plini Signature Strandberg Boden OS6",
+            "video_id": "vexLcbi638M"
+          },
+          {
+            "video_title": "Ilitch Back Plate Noise Cancelling System",
+            "video_id": "19AisHf07dM"
+          }
+        ]
+      }
+    },
+    {
+      "_id": "57ebac09d12b185804003d6f",
+      "slug": "our-brands",
+      "title": "Our Brands",
+      "content": "<p>At Tone Temple we stock a very select group of brands that are all exceptional quality. We believe that each of the brands that we represent are industry leaders. The current list of brands we stock are:</p><ul><li>Strandberg Guitars</li><li>Friedman</li><li>Cilia Guitars</li><li>Tronical</li><li>Ilitch Electronics</li><li>Yankee Power Supplies</li><li>Evil Angel Pickups</li></ul>",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-09-28T11:39:53.320Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-09-28T11:39:53.320Z",
+      "status": "published",
+      "modified_at": "2017-03-05T21:02:28.653Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": null
+    },
+    {
+      "_id": "57d498d0dcd7ac3b2b000253",
+      "slug": "main-description",
+      "title": "Main Description",
+      "content": "<p>Tone Temple brings together the finest boutique Guitar products with a personalised touch. We stock a range of high end products to cater for all of your tonal needs.&nbsp;</p><p>If you are interested in any of the products that we stock, please get in touch via <a href=\"mailto:sales@tonetemple.com.au\">sales@tonetemple.com.au</a>. If you would like to try before you buy and are in, or willing to travel Sydney we can arrange for you to test the products in the comfort of our showroom.</p>",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-09-10T23:35:44.922Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-09-10T23:35:44.922Z",
+      "status": "published",
+      "modified_at": "2016-09-28T11:55:37.941Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": null
+    },
+    {
+      "_id": "57c41c70d9e416e177000869",
+      "slug": "facebook-url",
+      "title": "Facebook url",
+      "content": "<p>https://www.facebook.com/tonetemple.aus/<br></p>",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-08-29T11:28:48.480Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-08-29T11:28:48.480Z",
+      "status": "published",
+      "modified_at": "2016-10-06T02:20:50.587Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": null
+    },
+    {
+      "_id": "57bcd6dfb55c27662a000e9f",
+      "slug": "copyright",
+      "title": "Copyright",
+      "content": "© Copyright Tone Temple 2016",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-08-23T23:06:07.063Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-08-23T23:06:07.063Z",
+      "status": "published",
+      "modified_at": "2016-09-10T13:43:36.562Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": null
+    },
+    {
+      "_id": "57bcd671b55c27662a000e8c",
+      "slug": "main-logo",
+      "title": "Main Logo",
+      "content": "",
+      "bucket": "57bc2fd1e5388d4b24000a46",
+      "type_slug": "globals",
+      "created_at": "2016-08-23T23:04:17.397Z",
+      "created_by": "560b1f8a46fbc4a031000002",
+      "created": "2016-08-23T23:04:17.397Z",
+      "status": "published",
+      "modified_at": "2016-08-31T23:11:47.976Z",
+      "modified_by": "560b1f8a46fbc4a031000002",
+      "metadata": {
+        "main_logo_image": {
+          "url": "https://cosmicjs.com/uploads/613fa8f0-6f69-11e6-9ce7-e1578c61af12-TT-2-01.png",
+          "imgix_url": "https://cosmicjs.imgix.net/613fa8f0-6f69-11e6-9ce7-e1578c61af12-TT-2-01.png"
+        },
+        "main_logo_svg": {
+          "url": "https://cosmicjs.com/uploads/461d12d0-6fd0-11e6-9ce7-e1578c61af12-TT-2-01.svg",
+          "imgix_url": "https://cosmicjs.imgix.net/461d12d0-6fd0-11e6-9ce7-e1578c61af12-TT-2-01.svg"
+        }
+      }
+    }
+  ],
+  "total": 7
+}
